@@ -1491,13 +1491,13 @@ EasyMDE.prototype.markdown = function (text) {
 
         if (this.options && this.options.renderingConfig && this.options.renderingConfig.codeSyntaxHighlighting === true) {
 
-            /* Get HLJS from config or window */
-            var hljs = this.options.renderingConfig.hljs || window.hljs;
+            /* Get Prism from config or window */
+            var Prism = this.options.renderingConfig.prism || window.Prism;
 
-            /* Check if HLJS loaded */
-            if (hljs) {
-                markedOptions.highlight = function (code) {
-                    return hljs.highlightAuto(code).value;
+            /* Check if Prism loaded */
+            if (Prism) {
+                markedOptions.highlight = function (code, lang) {
+                    return Prism.highlight(code, Prism.languages[lang], lang);
                 };
             }
         }
