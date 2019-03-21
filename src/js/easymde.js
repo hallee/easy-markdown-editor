@@ -1497,7 +1497,12 @@ EasyMDE.prototype.markdown = function (text) {
             /* Check if Prism loaded */
             if (Prism) {
                 markedOptions.highlight = function (code, lang) {
-                    return Prism.highlight(code, Prism.languages[lang], lang);
+                    try {
+                        return Prism.highlight(code, Prism.languages[lang], lang);
+                    } catch(error) {
+                        console.error('Syntax highlighting not supported for ' + lang);
+                        return code;
+                    }
                 };
             }
         }
